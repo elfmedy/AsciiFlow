@@ -1,0 +1,72 @@
+%% Copyright 2009 Ivan Griffin
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Ivan Griffin
+%
+% This work consists of the files tcp_state_machine.tex
+
+%Description
+%-----------
+%tcp_state_machine.tex - an example file illustrating the TCP (RFC 793)
+%                        state machine
+
+%Created 2009-11-20 by Ivan Griffin.  Last updated: 2009-11-20
+%-------------------------------------------------------------
+
+\documentclass{article}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[active, tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+\begin{preview}
+\begin{tikzpicture}
+
+  %
+  % Styles for states, and state edges
+  %
+  \tikzstyle{state} = [draw, very thick, rectangle, inner sep=1em, rounded corners, minimum width=9em, font={\rmfamily\bfseries}];
+  \tikzstyle{stateEdgePortion} = [black,thick];
+  \tikzstyle{stateEdge} = [stateEdgePortion,->];
+  \tikzstyle{edgeLabel} = [pos=0.5, text centered, font={\sffamily\small}];
+
+  %
+  % Position States
+  %
+  \node[state, name=model] {Model};
+  \node[state, name=controller, below of=model, right of=model, node distance=10em, xshift=3em]{Controller};
+  \node[state, name=view, below of=model, left of=model, node distance=10em, xshift=-3em] {View};
+ 
+  %
+  % Connect States via edges
+  %
+  \draw (controller.north)
+      edge[stateEdge, out=90, in=0, looseness=2] node[edgeLabel, xshift=-3.5em, yshift=-3.5em]{change model data}
+      (model.east);
+      
+  \draw ($(view.north) + (-0.5em, 0)$)
+      edge[stateEdge, out=90, in=180, looseness=2] node[edgeLabel, xshift=-3.5em, yshift=-3em]{query data}
+      ($(model.west) + (0, 0.5em)$);
+      
+  \draw ($(model.west) + (0, -0.5em)$)
+      edge[stateEdge, out=180, in=90, looseness=2, dashed] node[edgeLabel, xshift=2.5em, yshift=-3em]{notify changes}
+      ($(view.north) + (+0.5em, 0)$);
+      
+  \draw ($(controller.west) + (0, 0)$)
+      edge[stateEdge] node[edgeLabel, xshift=0em, yshift=1em]{set view}
+      ($(view.east) + (0, 0)$);
+
+\end{tikzpicture}
+\end{preview}
+\end{document} 
