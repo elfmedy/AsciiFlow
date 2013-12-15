@@ -108,3 +108,6 @@ class View:
 		else:
 			print 'warning:view\' update cmd is not vaild!'
 
+
+if __name__ == '__main__':
+	print 'this is aa_view file. please run aa_control.py'

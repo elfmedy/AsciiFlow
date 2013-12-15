@@ -43,7 +43,7 @@ class Controler:
 		self.m_btDelRect        = {}
 		self.m_btOutFile        = {}
 		buttonTable = [
-			[self.m_btSelect		, 'Select'          , self._CbSelect        ],
+			[self.m_btSelect        , 'Select'          , self._CbSelect        ],
 			[self.m_btLines         , 'Lines'           , self._CbLines         ],
 			[self.m_btLinesWithArrow, 'Lines with arrow', self._CbLinesWithArrow],
 			[self.m_btLineRect      , 'Line rect'       , self._CbLineRect      ],

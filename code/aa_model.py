@@ -328,3 +328,6 @@ class CanvasManager(ObserverInterface):
 			for j in range(0, self.m_width):
 				f.write(self.m_canvasBuff[i][j])
 			f.write('\n')
+
+if __name__ == '__main__':
+	print 'this is the model file, please run aa_control.py'
